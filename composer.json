@@ -1,0 +1,21 @@
+{
+    "name": "appkit/http-client",
+    "type": "library",
+    "description": "HTTP client for the AppKit framework",
+    "license": "MIT",
+    "require": {
+        "appkit/async": "^1.0",
+        "appkit/http": "^1.0",
+        "appkit/json": "^1.0",
+        "react/http": "^1.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "AppKit\\Http\\Client\\": "src/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "sort-packages": true
+    }
+}
