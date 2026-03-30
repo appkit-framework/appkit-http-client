@@ -9,6 +9,14 @@ class ClientHeadersMiddleware implements ClientHttpMiddlewareInterface {
         if(! $request -> hasHeader('User-Agent'))
             $request -> setHeader('User-Agent', 'AppKitHTTP');
 
+        if(! $request -> hasHeader('Host')) {
+            $hostHeader = $request -> getHost();
+            $port = $request -> getPort();
+            if($port !== null)
+                $hostHeader .= ":$port";
+            $request -> setHeader('Host', $hostHeader);
+        }
+
         return $next($request);
     }
 }
