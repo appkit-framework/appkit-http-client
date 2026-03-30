@@ -7,14 +7,29 @@ use AppKit\Http\Client\Message\ClientHttpRedirect;
 use AppKit\Http\Client\Message\ClientHttpError;
 
 class ResponseExceptionMiddleware implements ClientHttpMiddlewareInterface {
+    private $errorParser;
+
+    function __construct($errorParser) {
+        $this -> errorParser = $errorParser;
+    }
+
     public function processRequest($request, $next) {
         $response = $next($request);
 
         $status = $response -> getStatus();
-        if($status < 300)
-            return $response;
-        if($status < 400)
+
+        if($status >= 400) {
+            if($this -> errorParser)
+                throw $this -> errorParser -> parseError($response);
+        }
+
+        else if($status >= 300)
             throw new ClientHttpRedirect($response);
-        throw new ClientHttpError($response);
+
+        return $response;
+    }
+
+    public function setErrorParser($errorParser) {
+        $this -> errorParser = $errorParser;
     }
 }

@@ -11,6 +11,7 @@ use AppKit\Http\Client\Message\ClientHttpRedirect;
 use AppKit\Http\Client\Middleware\Internal\ClientHeadersMiddleware;
 use AppKit\Http\Client\Middleware\Internal\ResponseExceptionMiddleware;
 use AppKit\Http\Client\Middleware\Internal\ResponseBodyParserMiddleware;
+use AppKit\Http\Client\ErrorParser\DefaultErrorParser;
 
 use AppKit\Http\Middleware\HttpMiddlewarePipeline;
 use function AppKit\Async\await;
@@ -38,7 +39,9 @@ class HttpClient {
         $this -> pipeline -> addMiddleware(
             new ClientHeadersMiddleware()
         ) -> addMiddleware(
-            new ResponseExceptionMiddleware()
+            new ResponseExceptionMiddleware(
+                new DefaultErrorParser()
+            )
         ) -> addMiddleware(
             new ResponseBodyParserMiddleware()
         );
