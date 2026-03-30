@@ -71,99 +71,120 @@ class HttpClient {
 
     // Request
 
-    public function request($method, $url, $headers = [], $bodyText = '', $options = []) {
+    public function request(
+        $method,
+        $url,
+        $queryParams = [],
+        $headers = [],
+        $bodyText = '',
+        $options = []
+    ) {
         return $this -> send(
-            new ClientHttpRequest($method, $url, $headers, $bodyText),
+            new ClientHttpRequest($method, $url, $queryParams, $headers, $bodyText),
             $options
         );
     }
 
-    public function requestJson($method, $url, $body, $headers = [], $options = []) {
+    public function requestJson(
+        $method,
+        $url,
+        $body,
+        $queryParams = [],
+        $headers = [],
+        $options = []
+    ) {
         return $this -> send(
-            new JsonHttpRequest($method, $url, $body, $headers),
+            new JsonHttpRequest($method, $url, $body, $queryParams, $headers),
             $options
         );
     }
 
-    public function requestForm($method, $url, $body, $headers = [], $options = []) {
+    public function requestForm(
+        $method,
+        $url,
+        $body,
+        $queryParams = [],
+        $headers = [],
+        $options = []
+    ) {
         return $this -> send(
-            new FormHttpRequest($method, $url, $body, $headers),
+            new FormHttpRequest($method, $url, $body, $queryParams, $headers),
             $options
         );
     }
 
     // Get
 
-    public function get($url, $headers = [], $options = []) {
-        return $this -> request('GET', $url, $headers, options: $options);
+    public function get($url, $queryParams = [], $headers = [], $options = []) {
+        return $this -> request('GET', $url, $queryParams, $headers, options: $options);
     }
 
     // Post
 
-    public function post($url, $headers = [], $bodyText = '', $options = []) {
-        return $this -> request('POST', $url, $headers, $bodyText, $options);
+    public function post($url, $queryParams = [], $headers = [], $bodyText = '', $options = []) {
+        return $this -> request('POST', $url, $queryParams, $headers, $bodyText, $options);
     }
 
-    public function postJson($url, $body, $headers = [], $options = []) {
-        return $this -> requestJson('POST', $url, $body, $headers, $options);
+    public function postJson($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestJson('POST', $url, $body, $queryParams, $headers, $options);
     }
 
-    public function postForm($url, $body, $headers = [], $options = []) {
-        return $this -> requestForm('POST', $url, $body, $headers, $options);
+    public function postForm($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestForm('POST', $url, $body, $queryParams, $headers, $options);
     }
 
     // Put
 
-    public function put($url, $headers = [], $bodyText = '', $options = []) {
-        return $this -> request('PUT', $url, $headers, $bodyText, $options);
+    public function put($url, $queryParams = [], $headers = [], $bodyText = '', $options = []) {
+        return $this -> request('PUT', $url, $queryParams, $headers, $bodyText, $options);
     }
 
-    public function putJson($url, $body, $headers = [], $options = []) {
-        return $this -> requestJson('PUT', $url, $body, $headers, $options);
+    public function putJson($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestJson('PUT', $url, $body, $queryParams, $headers, $options);
     }
 
-    public function putForm($url, $body, $headers = [], $options = []) {
-        return $this -> requestForm('PUT', $url, $body, $headers, $options);
+    public function putForm($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestForm('PUT', $url, $body, $queryParams, $headers, $options);
     }
 
     // Delete
 
-    public function delete($url, $headers = [], $bodyText = '', $options = []) {
-        return $this -> request('DELETE', $url, $headers, $bodyText, $options);
+    public function delete($url, $queryParams = [], $headers = [], $bodyText = '', $options = []) {
+        return $this -> request('DELETE', $url, $queryParams, $headers, $bodyText, $options);
     }
 
-    public function deleteJson($url, $body, $headers = [], $options = []) {
-        return $this -> requestJson('DELETE', $url, $body, $headers, $options);
+    public function deleteJson($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestJson('DELETE', $url, $body, $queryParams, $headers, $options);
     }
 
-    public function deleteForm($url, $body, $headers = [], $options = []) {
-        return $this -> requestForm('DELETE', $url, $body, $headers, $options);
+    public function deleteForm($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestForm('DELETE', $url, $body, $queryParams, $headers, $options);
     }
 
     // Patch
 
-    public function patch($url, $headers = [], $bodyText = '', $options = []) {
-        return $this -> request('PATCH', $url, $headers, $bodyText, $options);
+    public function patch($url, $queryParams = [], $headers = [], $bodyText = '', $options = []) {
+        return $this -> request('PATCH', $url, $queryParams, $headers, $bodyText, $options);
     }
 
-    public function patchJson($url, $body, $headers = [], $options = []) {
-        return $this -> requestJson('PATCH', $url, $body, $headers, $options);
+    public function patchJson($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestJson('PATCH', $url, $body, $queryParams, $headers, $options);
     }
 
-    public function patchForm($url, $body, $headers = [], $options = []) {
-        return $this -> requestForm('PATCH', $url, $body, $headers, $options);
+    public function patchForm($url, $body, $queryParams = [], $headers = [], $options = []) {
+        return $this -> requestForm('PATCH', $url, $body, $queryParams, $headers, $options);
     }
 
     // Head
 
-    public function head($url, $headers = [], $options = []) {
-        return $this -> request('HEAD', $url, $headers, options: $options);
+    public function head($url, $queryParams = [], $headers = [], $options = []) {
+        return $this -> request('HEAD', $url, $queryParams, $headers, options: $options);
     }
 
     // Options
 
-    public function options($url, $headers = [], $options = []) {
-        return $this -> request('OPTIONS', $url, $headers, options: $options);
+    public function options($url, $queryParams, $headers = [], $options = []) {
+        return $this -> request('OPTIONS', $url, $queryParams, $headers, options: $options);
     }
 
     // Internal

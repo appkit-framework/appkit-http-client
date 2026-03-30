@@ -9,10 +9,12 @@ class JsonHttpRequest extends ClientHttpRequest {
         $method,
         $url,
         $body,
+        $queryParams = [],
         $headers = []
     ) {
         $this -> setMethod($method)
             -> setUrl($url)
+            -> setQueryParams($queryParams)
             -> setBody($body)
             -> setHeaders($headers)
             -> setHeader('Content-Type', 'application/json');

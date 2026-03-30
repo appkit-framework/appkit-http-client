@@ -12,11 +12,13 @@ class ClientHttpRequest extends AbstractHttpRequest {
     function __construct(
         $method,
         $url,
+        $queryParams = [],
         $headers = [],
         $bodyText = ''
     ) {
         $this -> setMethod($method)
             -> setUrl($url)
+            -> setQueryParams($queryParams)
             -> setHeaders($headers)
             -> setBodyText($bodyText);
     }
